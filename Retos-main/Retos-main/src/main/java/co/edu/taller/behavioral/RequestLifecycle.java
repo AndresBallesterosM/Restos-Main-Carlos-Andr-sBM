@@ -1,0 +1,44 @@
+package co.edu.taller.behavioral;
+
+public class RequestLifecycle {
+
+    public enum Status {
+        RECEIVED,
+        IN_REVIEW,
+        APPROVED,
+        REJECTED
+    }
+
+    private Status status = Status.RECEIVED;
+
+    public Status status() {
+        return status;
+    }
+
+    public void review() {
+
+        if (status != Status.RECEIVED) {
+            throw new IllegalStateException();
+        }
+
+        status = Status.IN_REVIEW;
+    }
+
+    public void approve() {
+
+        if (status != Status.IN_REVIEW) {
+            throw new IllegalStateException();
+        }
+
+        status = Status.APPROVED;
+    }
+
+    public void reject() {
+
+        if (status != Status.IN_REVIEW) {
+            throw new IllegalStateException();
+        }
+
+        status = Status.REJECTED;
+    }
+}
